@@ -392,6 +392,16 @@ describe("memoize", function() {
     expect(passThrough('toString')).to.equal('toString');
     expect(fastPassThrough('toString')).to.equal('toString');
   });
+  
+  it("should give different results for different arguments", function() {
+    var fib = function(n) {
+      return n < 2 ? n : fib(n - 1) + fib(n - 2);
+    };
+    expect(fib(10)).to.equal(55);
+    var fastFib = _.memoize(fib);
+    expect(fastFib(10)).to.equal(55);
+    expect(fastFib(7)).to.equal(13);
+  });  
 });
 
 describe("delay", function() {
