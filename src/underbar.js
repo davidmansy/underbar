@@ -215,7 +215,7 @@ var _ = {};
   // going together.
   //
   // Example:
-  // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3]]
+  // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d']]
   _.zip = function() {
   };
 
