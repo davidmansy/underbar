@@ -314,7 +314,7 @@ describe("some", function() {
   });
 
   it("should handle casting to boolean - false", function() {
-    expect(_.some([1], passThrough)).to.equal(false);
+    expect(_.some([0], passThrough)).to.equal(false);
   });
 });
 
