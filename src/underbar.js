@@ -65,6 +65,7 @@ var _ = {};
     // it uses the iteration helper `each`, which you will need to write.
     /* SOLUTION */
     var result = -1;
+    array = Array.prototype.slice.call(array);
 
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
