@@ -15,8 +15,6 @@ var _ = {};
 
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
-  // Return an array of the last n elements of an array. If n is undefined,
-  // return just the last element.
   _.last = function(array, n) {
     /* SOLUTION */
     if (n == null) {
