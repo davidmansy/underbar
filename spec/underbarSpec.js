@@ -398,16 +398,6 @@ describe("memoize", function() {
     expect(fastFib(10)).to.equal(55);
   });
 
-  it("should check hasOwnProperty", function() {
-    var passThrough = function(str) {
-      return str;
-    };
-    var fastPassThrough = _.memoize(passThrough);
-
-    expect(passThrough('toString')).to.equal('toString');
-    expect(fastPassThrough('toString')).to.equal('toString');
-  });
-
   it("should give different results for different arguments", function() {
     var fib = function(n) {
       return n < 2 ? n : fib(n - 1) + fib(n - 2);

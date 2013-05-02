@@ -213,7 +213,7 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: Try re-using every() here.
-    // TODO: Write test that exposes no default iterator
+    /* SOLUTION */
     iterator = iterator || function(i) { return i; };
 
     return !_.every(collection, function(item) {
@@ -305,12 +305,10 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-    // TODO: Remove hasownproperty test
     /* SOLUTION */
     return function() {
       var memo = {};
-      return memo.hasOwnProperty(arguments[0]) ? memo[arguments[0]]
-                                               : func(arguments[0]);
+      return memo[arguments[0]] || func(arguments[0]);
     };
     /* END SOLUTION */
   };
