@@ -12,9 +12,19 @@ var _ = {};
    * of values; in JavaScript, a 'collection' means either an object or an array.
    */
 
-
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
+  _.first = function(array, n) {
+    /* SOLUTION */
+    if (n == null) {
+      return array[0];
+    }
+    return Array.prototype.slice.call(array, 0, (n || 0));
+    /* END SOLUTION */
+  };
+
+  // Like first, but for the last elements. If n is undefined, return just the
+  // last element.
   _.last = function(array, n) {
     /* SOLUTION */
     if (n == null) {
@@ -24,17 +34,6 @@ var _ = {};
       return [];
     }
     return Array.prototype.slice.call(array, Math.max(0, array.length - n));
-    /* END SOLUTION */
-  };
-
-  // Like last, but for the first elements. If n is undefined, return just the
-  // first element.
-  _.first = function(array, n) {
-    /* SOLUTION */
-    if (n == null) {
-      return array[0];
-    }
-    return Array.prototype.slice.call(array, 0, (n || 0));
     /* END SOLUTION */
   };
 

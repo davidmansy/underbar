@@ -15,7 +15,6 @@ describe("first", function() {
     var args = returnArguments(1,2,3);
     expect(_.first(args, 2)).to.eql([1,2]);
   });
-
 });
 
 describe("last", function() {
@@ -39,7 +38,6 @@ describe("last", function() {
     var args = returnArguments(1, 2, 3, 4);
     expect(_.last(args, 2)).to.eql([3, 4]);
   });
-
 });
 
 describe("each", function() {
