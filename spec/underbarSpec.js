@@ -1,5 +1,23 @@
 var returnArguments = function(){ return arguments; };
 
+describe("first", function() {
+  it("should be able to pull out the first element of an array", function() {
+    expect(_.first([1,2,3])).to.equal(1);
+  });
+
+  it("should be able to accept a user-defined index", function() {
+    expect(_.first([1,2,3], 0)).to.eql([]);
+    expect(_.first([1,2,3], 2)).to.eql([1, 2]);
+    expect(_.first([1,2,3], 5)).to.eql([1, 2, 3]);
+  });
+
+  it("should work on an arguments object", function() {
+    var args = returnArguments(1,2,3);
+    expect(_.first(args, 2)).to.eql([1,2]);
+  });
+
+});
+
 describe("last", function() {
   it("should pull the last element from an array", function() {
     expect(_.last([1,2,3])).to.equal(3);
@@ -24,26 +42,6 @@ describe("last", function() {
 
 });
 
-/*
-
-describe("first", function() {
-  it("should be able to pull out the first element of an array", function() {
-    expect(_.first([1,2,3])).to.equal(1);
-  });
-
-  it("should be able to accept a user-defined index", function() {
-    expect(_.first([1,2,3], 0)).to.eql([]);
-    expect(_.first([1,2,3], 2)).to.eql([1, 2]);
-    expect(_.first([1,2,3], 5)).to.eql([1, 2, 3]);
-  });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments(1,2,3);
-    expect(_.first(args, 2)).to.eql([1,2]);
-  });
-
-});
-
 describe("each", function() {
   it("should provide value and iteration count", function() {
     var letters = ['a', 'b', 'c'];
@@ -57,6 +55,21 @@ describe("each", function() {
       ['a', 0, letters],
       ['b', 1, letters],
       ['c', 2, letters]
+    ]);
+  });
+
+  it("should iterate over objects", function() {
+    var letters = {d: 'dog', e: 'elephant', f: 'flotsam'};
+    var iterations = [];
+
+    _.each(letters, function(value, property, object) {
+      iterations.push([value, property, object]);
+    });
+
+    expect(iterations).to.eql([
+      ['dog', 'd', letters],
+      ['elephant', 'e', letters],
+      ['flotsam', 'f', letters]
     ]);
   });
 });
@@ -218,7 +231,7 @@ describe("every", function() {
   var isEven = function(num) { return num % 2 === 0; };
 
   it("should handle an empty set", function() {
-    expect(_.every([], getValue) ).to.equal(true);
+    expect(_.every([], getValue)).to.equal(true);
   });
 
   it("should handle a set that contains only true values", function() {
@@ -245,12 +258,16 @@ describe("every", function() {
     expect(_.every([0], getValue)).to.equal(false);
   });
 
+  it("should handle not being passed an iterator", function() {
+    expect(_.every([true, true, true])).to.equal(true);
+  });
+
   it("should work with an array that contains several undefined values", function() {
     expect(_.every([undefined, undefined, undefined], getValue)).to.equal(false);
   });
 });
 
-describe("any", function() {
+describe("some", function() {
   var nativeSome = Array.prototype.some;
   var isEven = function(number){
     return number % 2 === 0;
@@ -267,39 +284,39 @@ describe("any", function() {
   });
 
   it("should handle the empty set", function() {
-    expect(_.any([])).to.equal(false);
+    expect(_.some([])).to.equal(false);
   });
 
   it("should handle a set containing 'false' values", function() {
-    expect(_.any([false, false, false])).to.equal(false);
+    expect(_.some([false, false, false])).to.equal(false);
   });
 
   it("should handle a set containing one 'true' value", function() {
-    expect(_.any([false, false, true])).to.equal(true);
+    expect(_.some([false, false, true])).to.equal(true);
   });
 
   it("should handle a set containing a string", function() {
-    expect(_.any([null, 0, 'yes', false])).to.equal(true);
+    expect(_.some([null, 0, 'yes', false])).to.equal(true);
   });
 
   it("should handle a set that contains falsy values", function() {
-    expect(_.any([null, 0, '', false])).to.equal(false);
+    expect(_.some([null, 0, '', false])).to.equal(false);
   });
 
   it("should handle a set that contains all odd numbers", function() {
-    expect(_.any([1, 11, 29], isEven)).to.equal(false);
+    expect(_.some([1, 11, 29], isEven)).to.equal(false);
   });
 
   it("should handle a set that contains an even number", function() {
-    expect(_.any([1, 10, 29], isEven)).to.equal(true);
+    expect(_.some([1, 10, 29], isEven)).to.equal(true);
   });
 
   it("should handle casting to boolean - true", function() {
-    expect(_.any([1], passThrough)).to.equal(true);
+    expect(_.some([1], passThrough)).to.equal(true);
   });
 
   it("should handle casting to boolean - false", function() {
-    expect(_.any([0], passThrough)).to.equal(false);
+    expect(_.some([1], passThrough)).to.equal(false);
   });
 });
 
@@ -425,10 +442,10 @@ describe("delay", function() {
 
 describe("shuffle", function() {
   it("should not modify the original object", function() {
-    var numbers = _.range(10);
-    var shuffled = _.shuffle(numbers);
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var shuffled = _.shuffle(numbers).sort();
 
-    expect(shuffled.sort()).to.eql(numbers);
+    expect(shuffled).to.not.equal(numbers);
   });
 });
 
@@ -482,17 +499,6 @@ describe("sortBy", function() {
   });
 });
 
-describe("zip", function() {
-  it("should zip together arrays of different lengths", function() {
-    var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
-    expect(_.zip(names, ages, leaders)).to.eql([
-      ['moe', 30, true],
-      ['larry', 40, undefined],
-      ['curly', 50, undefined]
-    ]);
-  });
-});
-
 describe("flatten", function() {
   it("can flatten nested arrays", function() {
     var nestedArray = [1, [2], [3, [[[4]]]]];
@@ -502,6 +508,17 @@ describe("flatten", function() {
   it("works on an arguments object", function() {
     var args = returnArguments(1, [2], [3, [[[4]]]]);
     expect(_.flatten(args)).to.eql([1,2,3,4]);
+  });
+});
+
+describe("zip", function() {
+  it("should zip together arrays of different lengths", function() {
+    var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
+    expect(_.zip(names, ages, leaders)).to.eql([
+      ['moe', 30, true],
+      ['larry', 40, undefined],
+      ['curly', 50, undefined]
+    ]);
   });
 });
 
@@ -530,5 +547,3 @@ describe("difference", function() {
     expect(result).to.eql([3, 4]);
   });
 });
-
-*/
