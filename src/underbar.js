@@ -471,9 +471,6 @@ var _ = {};
   // See the Underbar readme for details.
   _.chain = function(obj) {
     /* SOLUTION */
-    // TODO
-    _.extend(obj, _);
-    return obj;
     /* END SOLUTION */
   };
 
