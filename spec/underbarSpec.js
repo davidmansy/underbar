@@ -10,11 +10,6 @@ describe("first", function() {
     expect(_.first([1,2,3], 2)).to.eql([1, 2]);
     expect(_.first([1,2,3], 5)).to.eql([1, 2, 3]);
   });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments(1,2,3);
-    expect(_.first(args, 2)).to.eql([1,2]);
-  });
 });
 
 describe("last", function() {
@@ -32,11 +27,6 @@ describe("last", function() {
 
   it("should return all the array's elements if the index argument is larger than the length of the array", function() {
     expect(_.last([1,2,3], 5)).to.eql([1, 2, 3]);
-  });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments(1, 2, 3, 4);
-    expect(_.last(args, 2)).to.eql([3, 4]);
   });
 });
 
@@ -78,11 +68,6 @@ describe("indexOf", function() {
     var numbers = [1, 2, 3];
     numbers.indexOf = null;
     expect(_.indexOf(numbers, 2)).to.be(1);
-  });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments(1,2,3);
-    expect(_.indexOf(args, 2)).to.be(1);
   });
 
   it("should not have 35 in the list", function() {
@@ -143,11 +128,6 @@ describe("uniq", function() {
     var iterator = function(value) { return value +1; };
     var list = [1, 2, 2, 3, 4, 4];
     expect(_.uniq(list, true, iterator)).to.eql([1, 2, 3, 4]);
-  });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments(1, 2, 1, 3, 1, 4);
-    expect(_.uniq(args)).to.eql([1, 2, 3, 4]);
   });
 });
 
@@ -502,11 +482,6 @@ describe("flatten", function() {
     var nestedArray = [1, [2], [3, [[[4]]]]];
     expect(_.flatten(nestedArray)).to.eql([1,2,3,4]);
   });
-
-  it("works on an arguments object", function() {
-    var args = returnArguments(1, [2], [3, [[[4]]]]);
-    expect(_.flatten(args)).to.eql([1,2,3,4]);
-  });
 });
 
 describe("zip", function() {
@@ -525,12 +500,6 @@ describe("intersection", function() {
     var stooges = ['moe', 'curly', 'larry'];
     var leaders = ['moe', 'groucho'];
     expect(_.intersection(stooges, leaders)).to.eql(['moe']);
-  });
-
-  it("should work on an arguments object", function() {
-    var args = returnArguments('moe', 'curly', 'larry');
-    var leaders = ['moe', 'groucho'];
-    expect(_.intersection(args, leaders)).to.eql(['moe']);
   });
 });
 

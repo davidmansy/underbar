@@ -19,7 +19,7 @@ var _ = {};
     if (n == null) {
       return array[0];
     }
-    return Array.prototype.slice.call(array, 0, (n || 0));
+    return array.slice(0, (n || 0));
     /* END SOLUTION */
   };
 
@@ -33,7 +33,7 @@ var _ = {};
     if (n === 0) {
       return [];
     }
-    return Array.prototype.slice.call(array, Math.max(0, array.length - n));
+    return array.slice(Math.max(0, array.length - n));
     /* END SOLUTION */
   };
 
@@ -65,7 +65,6 @@ var _ = {};
     // it uses the iteration helper `each`, which you will need to write.
     /* SOLUTION */
     var result = -1;
-    array = Array.prototype.slice.call(array);
 
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
