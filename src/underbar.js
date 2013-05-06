@@ -9,7 +9,8 @@ var _ = {};
    * ===========
    *
    * In this section, we'll have a look at functions that operate on collections
-   * of values; in JavaScript, a 'collection' means either an object or an array.
+   * of values; in JavaScript, a 'collection' is something that can contain a
+   * number of values--either an array or an object.
    */
 
   // Return an array of the first n elements of an array. If n is undefined,
