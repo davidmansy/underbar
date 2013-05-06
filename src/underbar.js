@@ -335,22 +335,7 @@ var _ = {};
   // Shuffle an array.
   _.shuffle = function(array) {
     /* SOLUTION */
-    // Convenience function for performing an in-place swap. This should be
-    // placed outside of the function body in a production setting.
-    var swap = function(arr, a, b) {
-      var temp = arr[a];
-      arr[a] = arr[b];
-      arr[b] = temp;
-    };
-
-    var result = array.slice();
-
-    for (var i = 0; i < result.length; i++) {
-      var rand = Math.floor(Math.random() * result.length);
-      swap(result, i, rand);
-    }
-
-    return result;
+    return array.slice().sort(function(){ return Math.random() - .5; });
     /* END SOLUTION */
   };
 
