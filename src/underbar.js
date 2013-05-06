@@ -303,9 +303,10 @@ var _ = {};
   // instead if possible.
   _.memoize = function(func) {
     /* SOLUTION */
+    var memo = {};
     return function() {
-      var memo = {};
-      return memo[arguments[0]] || func(arguments[0]);
+      var serialization = JSON.stringify(arguments);
+      return memo[serialization] = memo[serialization] || func.apply(this, arguments);
     };
     /* END SOLUTION */
   };
