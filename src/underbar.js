@@ -209,7 +209,7 @@ var _ = {};
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
-    // TIP: Try re-using every() here.
+    // TIP: There's a very clever way to re-use every() here.
     /* SOLUTION */
     iterator = iterator || function(i) { return i; };
 
