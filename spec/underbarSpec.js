@@ -326,7 +326,7 @@ describe("extend", function() {
 
   it("should not copy undefined values", function() {
     var extended = _.extend({}, {a: void 0, b: null});
-    expect(extended.hasOwnProperty('a') && extended.hasOwnProperty('b')).to.be(true);
+    expect('a' in extended && 'b' in extended).to.be(true);
   });
 });
 
