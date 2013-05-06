@@ -150,8 +150,8 @@ var _ = {};
   _.invoke = function(list, methodName, args) {
     /* SOLUTION */
     return _.map(list, function(val, i, list) {
-      return typeof methodName === 'string' ? list[methodName].apply(val, args)
-                                            : methodName.apply(val, args);
+      var method = typeof methodName === 'string' ? list[methodName] : methodName;
+      return method.apply(val, args);
     });
     /* END SOLUTION */
   };
