@@ -17,10 +17,7 @@ var _ = {};
   // return just the first element.
   _.first = function(array, n) {
     /* SOLUTION */
-    if (n == null) {
-      return array[0];
-    }
-    return array.slice(0, (n || 0));
+    return n === undefined ? array[0] : array.slice(0, n);
     /* END SOLUTION */
   };
 
@@ -28,7 +25,7 @@ var _ = {};
   // last element.
   _.last = function(array, n) {
     /* SOLUTION */
-    if (n == null) {
+    if (n === undefined) {
       return array[array.length - 1];
     }
     if (n === 0) {
@@ -42,7 +39,7 @@ var _ = {};
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
     /* SOLUTION */
-    if (iterator == null) {
+    if (iterator === undefined) {
       return undefined;
     }
 
