@@ -376,8 +376,8 @@ var _ = {};
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
     /* SOLUTION */
-    var max = 0,
-        result = new Array(max);
+    var max = 0;
+    var result = new Array(max);
 
     _.each(arguments, function(arg) {
       max = Math.max(arg.length, max);
