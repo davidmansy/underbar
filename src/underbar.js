@@ -171,10 +171,15 @@ var _ = {};
   //
   _.reduce = function(collection, iterator, initialValue) {
     /* SOLUTION */
-    initialValue = initialValue || 0;
+    var initial = initialValue === undefined;
 
-    _.map(collection, function(val) {
-      initialValue = iterator(initialValue, val);
+    _.each(collection, function(val, i, list) {
+      if (initial) {
+        initial = false;
+        initialValue = val;
+      } else {
+        initialValue = iterator(initialValue, val);
+      }
     });
 
     return initialValue;
