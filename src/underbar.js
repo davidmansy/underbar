@@ -340,7 +340,7 @@ var _ = {};
   // Shuffle an array.
   _.shuffle = function(array) {
     /* SOLUTION */
-    return array.slice().sort(function(){ return Math.random() - .5; });
+    return array.slice().sort(function(){ return Math.random() - 0.5; });
     /* END SOLUTION */
   };
 
