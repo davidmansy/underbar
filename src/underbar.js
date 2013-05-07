@@ -1,41 +1,39 @@
-var _ = {};
+/*jshint eqnull:true, expr:true*/
+
+var _ = { };
 
 (function() {
 
-  // Return an array of the last n elements of an array. If n is undefined,
-  // return just the last element.
+  /**
+   * COLLECTIONS
+   * ===========
+   *
+   * In this section, we'll have a look at functions that operate on collections
+   * of values; in JavaScript, a 'collection' is something that can contain a
+   * number of values--either an array or an object.
+   */
+
+  // Return an array of the first n elements of an array. If n is undefined,
+  // return just the first element.
+  _.first = function(array, n) {
+  };
+
+  // Like first, but for the last elements. If n is undefined, return just the
+  // last element.
   _.last = function(array, n) {
   };
 
-  // Like last, but for the first elements
-  _.first = function(array, n) {
-    // TIP: you can often re-use similar functions in clever ways, like so:
-    return _.last(array.reverse(), n);
+  // Call iterator(value, key, collection) for each element of collection.
+  // Accepts both arrays and objects.
+  _.each = function(collection, iterator) {
   };
-
-
-  // Call iterator(value, key, collection) for each element of collection
-  _.each = function(obj, iterator) {
-  };
-
-  /*
-   * TIP: Here's an example of a function that needs to iterate, which we've
-   * implemented for you. Instead of using a standard `for` loop, though,
-   * it uses the iteration helper `each`, which you will need to write.
-   */
 
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
   _.indexOf = function(array, target){
-    var result = -1;
-
-    _.each(array, function(item, index) {
-      if (item === target && result === -1) {
-        result = index;
-      }
-    });
-
-    return result;
+    // TIP: Here's an example of a function that needs to iterate, which we've
+    // implemented for you. Instead of using a standard `for` loop, though,
+    // it uses the iteration helper `each`, which you will need to write.
   };
 
   // Return all elements of an array that pass a truth test.
@@ -53,14 +51,11 @@ var _ = {};
   };
 
 
-  /*
-   * map() is a useful primitive iteration function that works a lot
-   * like each(), but in addition to running the operation on all
-   * the members, it also maintains an array of results.
-   */
-
   // Return the results of applying an iterator to each element.
   _.map = function(array, iterator) {
+    // map() is a useful primitive iteration function that works a lot
+    // like each(), but in addition to running the operation on all
+    // the members, it also maintains an array of results.
   };
 
   /*
@@ -72,14 +67,17 @@ var _ = {};
   // Takes an array of objects and returns and array of the values of
   // a certain property in it. E.g. take an array of people and return
   // an array of just their ages
-  _.pluck = function(obj, propertyName) {
-    return _.map(obj, function(value){
+  _.pluck = function(array, propertyName) {
+    // TIP: map is really handy when you want to transform an array of
+    // values into a new array of values. _.pluck() is solved for you
+    // as an example of this.
+    return _.map(array, function(value){
       return value[propertyName];
     });
   };
 
   // Calls the method named by methodName on each value in the list.
-  _.invoke = function(list, methodName) {
+  _.invoke = function(list, methodName, args) {
   };
 
   // Reduces an array or object to a single value by repetitively calling
@@ -95,15 +93,15 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   //
-  _.reduce = function(obj, iterator, initialValue) {
+  _.reduce = function(collection, iterator, initialValue) {
   };
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
-    // TIP: A lot of iteration problems can be most easily expressed in
+    // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
-    return _.reduce(collection, function(wasFound, item){
-      if(wasFound){
+    return _.reduce(collection, function(wasFound, item) {
+      if(wasFound) {
         return true;
       }
       return item === target;
@@ -112,19 +110,22 @@ var _ = {};
 
 
   // Determine whether all of the elements match a truth test.
-  _.every = function(obj, iterator) {
-    // TIP: use reduce on this one!
+  _.every = function(collection, iterator) {
+    // TIP: Try re-using reduce() here.
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
-  _.any = function(obj, iterator) {
-    // TIP: re-use every() here
+  _.some = function(collection, iterator) {
+    // TIP: There's a very clever way to re-use every() here.
   };
 
 
-  /*
-   * These are a couple of helpers for merging objects
+  /**
+   * OBJECTS
+   * =======
+   *
+   * In this section, we'll look at a couple of helpers for merging objects.
    */
 
   // Extend a given object with all the properties of the passed in
@@ -138,7 +139,6 @@ var _ = {};
   //   }, {
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
-  //
   _.extend = function(obj) {
   };
 
@@ -148,7 +148,10 @@ var _ = {};
   };
 
 
-  /*
+  /**
+   * FUNCTIONS
+   * =========
+   *
    * Now we're getting into function decorators, which take in any function
    * and return out a new version of the function that works somewhat differently
    */
@@ -156,7 +159,7 @@ var _ = {};
   // Return a function that can be called at most one time. Subsequent calls
   // should return the previously returned value.
   _.once = function(func) {
-    // TIP: These variables are stored in a `closure scope` (worth researching),
+    // TIP: These variables are stored in a "closure scope" (worth researching),
     // so that they'll remain available to the newly-generated function every
     // time it's called.
     var alreadyCalled = false;
@@ -194,15 +197,21 @@ var _ = {};
   };
 
 
-  /*
-   * Advanced collection operations
+  /**
+   * ADVANCED COLLECTION OPERATIONS
+   * ==============================
    */
 
   // Shuffle an array.
-  _.shuffle = function(obj) {
+  _.shuffle = function(array) {
   };
 
-  /* (End of pre-course curriculum) */
+
+  /**
+   * Note: This is the end of the pre-course curriculum. Feel free to continue,
+   * but nothing beyond here is required.
+   */
+
 
   // Sort the object's values by a criterion produced by an iterator.
   // If iterator is a string, sort objects by that property with the name
@@ -215,21 +224,20 @@ var _ = {};
   // going together.
   //
   // Example:
-  // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d']]
+  // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
   };
 
-  // Flattens a multidimensional array to a one-dimensional array that
-  // contains all the elements of all the nested arrays.
+  // Takes a multidimensional array and converts it to a one-dimensional array.
+  // The new array should contain all elements of the multidimensional array.
   //
-  // Hints: Use Array.isArray to check if something is an array
-  //
+  // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
   };
 
-  // Produce an array that contains every item shared between all the
-  // passed-in arrays.
-  _.intersection = function(array) {
+  // Takes an arbitrary number of arrays and produces an array that contains
+  // every item shared between all the passed-in arrays.
+  _.intersection = function() {
   };
 
   // Take the difference between one array and a number of other arrays.
@@ -238,15 +246,15 @@ var _ = {};
   };
 
 
-  /*
-   * Offroad
+  /**
+   * MEGA EXTRA CREDIT
+   * =================
    */
 
-  // EXTRA CREDIT:
-  // Return an object that responds to chainable function calls for
-  // map, pluck, select, etc
+  // Return an object that responds to chainable function calls for map, pluck,
+  // select, etc.
   //
-  // See README for details
+  // See the Underbar readme for details.
   _.chain = function(obj) {
   };
 
@@ -254,7 +262,7 @@ var _ = {};
   // Returns a function, that, when invoked, will only be triggered at most once
   // during a given window of time.
   //
-  // See README for details
+  // See the Underbar readme for details.
   _.throttle = function(func, wait) {
   };
 
