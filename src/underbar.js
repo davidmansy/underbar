@@ -402,13 +402,9 @@ var _ = {};
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
     /* SOLUTION */
-    result = result || [];
-
-    _.each(nestedArray, function(val) {
-      Array.isArray(val) ? _.flatten(val, result) : result.push(val);
-    });
-
-    return result;
+    return _.reduce(nestedArray, function(memo, val){
+      return memo.concat(Array.isArray(val) ? _.flatten(val) : [val]);
+    }, []);
     /* END SOLUTION */
   };
 
