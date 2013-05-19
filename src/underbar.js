@@ -449,16 +449,6 @@ var _ = {};
    * =================
    */
 
-  // Return an object that responds to chainable function calls for map, pluck,
-  // select, etc.
-  //
-  // See the Underbar readme for details.
-  _.chain = function(obj) {
-    /* SOLUTION */
-    /* END SOLUTION */
-  };
-
-  // EXTRA CREDIT:
   // Returns a function, that, when invoked, will only be triggered at most once
   // during a given window of time.
   //
