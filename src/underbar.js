@@ -74,16 +74,65 @@ var _ = { };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+    var result = [];
+    _.each(collection, function(value, index, collection) {
+      if (iterator(value)) {
+        result.push(value);
+      }
+    });
+    return result;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, iterator) {
     // TIP: see if you can re-use _.select() here, without simply
     // copying code in and modifying it
+    return _.filter(collection, function(value) {
+      return !iterator(value);
+    });
+
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array) {
+  _.uniq = function(array, sorted, iterator) {
+    if (arguments.length === 1) {
+      sorted = false;
+      iterator = function(value) {
+        return value
+      }
+    }
+    var result = [];
+
+    //If the array is sorted, we can push each value of the array except if the transformed value equals the transformed value of the previous value
+    if (sorted) {
+      _.each(array, function(value, index, collection) {
+        if (index === 0) {
+          result.push(value);
+        } else{
+          if (iterator(value) !== iterator(array[index - 1])) {
+            result.push(value);
+          }
+        }
+      });
+    } else {
+      //IF the array is not sorted, we need for each value of the array, to walk the "array of the transformed value", if it is not found, then we can push the value
+      var resultTransformed = [];
+
+      _.each(array, function(value, index, collection) {
+        var valueTransformed = iterator(value);
+        var duplicate = false;
+        _.each(resultTransformed, function(valueT, indexT, collectionT) {
+          if (valueTransformed === valueT) {
+            duplicate = true;
+          }
+        });
+        if (duplicate === false) {
+          resultTransformed.push(valueTransformed);
+          result.push(value);
+        }
+      });
+    }
+    return result;
   };
 
 
