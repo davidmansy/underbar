@@ -103,7 +103,8 @@ var _ = { };
     }
     var result = [];
 
-    //If the array is sorted, we can push each value of the array except if the transformed value equals the transformed value of the previous value
+    //If the array is sorted, we can push each value of the array except if the transformed value
+    //equals the transformed value of the previous value
     if (sorted) {
       _.each(array, function(value, index, collection) {
         if (index === 0) {
@@ -115,7 +116,8 @@ var _ = { };
         }
       });
     } else {
-      //IF the array is not sorted, we need for each value of the array, to walk the "array of the transformed value", if it is not found, then we can push the value
+      //If the array is not sorted, we need for each value of the array, to walk the "array of the transformed value",
+      //if it is not found, then we can push the value
       var resultTransformed = [];
 
       _.each(array, function(value, index, collection) {
@@ -141,6 +143,11 @@ var _ = { };
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+    var result = [];
+    _.each(array, function(value, index, collection) {
+      result.push(iterator(value));
+    });
+    return result;
   };
 
   /*
@@ -163,6 +170,12 @@ var _ = { };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName, args) {
+    if (typeof methodName === 'string') {
+      methodName = Array.prototype[methodName];
+    }
+    return _.map(list, function(value) {
+      return methodName.apply(value, args);
+    });
   };
 
   // Reduces an array or object to a single value by repetitively calling
