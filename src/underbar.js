@@ -372,6 +372,27 @@ var _ = { };
 
   // Shuffle an array.
   _.shuffle = function(array) {
+    var work = array;
+    console.log('initial work is: ' + work);
+    var shuffled = [];
+
+    var getRandomInt = function(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    //Implement the original Fisher and Yates original method
+    while (work.length > 0) {
+      var pick = getRandomInt(0, work.length - 1);
+      console.log('pick is: ' + pick);
+
+      shuffled.push(work[pick]);
+      console.log('shuffled is: ' + shuffled);
+      work.splice(pick, 1);
+      console.log('work is: ' + work);
+    }
+
+    return shuffled;
+
   };
 
 
