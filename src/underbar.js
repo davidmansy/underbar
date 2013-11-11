@@ -56,10 +56,9 @@ var _ = { };
   _.indexOf = function(array, target){
 
     var result = -1;
-
-    _.each(array, function(value, index, collection) {
-      if (value === target) {
-        return result !== -1 ? result : result = index;
+    _.each(array, function(value, key) {
+      if(value === target && result === -1) {
+        result = key;
       }
     });
     return result;
