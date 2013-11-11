@@ -139,9 +139,9 @@ var _ = { };
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
     var result = [];
-    _.each(array, function(value, index, collection) {
+    _.each(array, function(value) {
       result.push(iterator(value));
-    });
+    })
     return result;
   };
 
