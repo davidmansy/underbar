@@ -19,11 +19,7 @@ var _ = { };
     if (arguments.length === 1) {
       return array[0];
     } else {
-      if (n === 0) {
-        return [];
-      } else {
-        return array.slice(0, n);        
-      }
+      return array.slice(0, n);
     }
   };
 
