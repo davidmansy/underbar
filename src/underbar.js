@@ -436,6 +436,28 @@ var _ = { };
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var listOfArrays = Array.prototype.slice.call(arguments, 0);
+    var firstArray = arguments[0];
+    var mainResultArray = [];
+
+    //Loop on each value of the first array
+    _.each(firstArray, function(valueFirstArray, indexFirstArray) {
+      var resultArray = [];
+
+      //Loop on each array of the list of arrays
+      _.each(listOfArrays, function(arr, index) {
+        if (arr[indexFirstArray]) {
+          resultArray.push(arr[indexFirstArray]);
+        } else {
+          resultArray.push(undefined);
+        }
+      });
+      mainResultArray.push(resultArray);
+
+    });
+
+    return mainResultArray;
+
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
