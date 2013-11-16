@@ -536,6 +536,40 @@ var _ = { };
   //
   // See the Underbar readme for details.
   _.throttle = function(func, wait) {
+
+    var storedResult; //Last stored result of func
+    var activeTimeWindow = false; //Indicates if the window of time is active
+    var called = false; //Indicates if there was at least one call to func during the window of time
+
+    return function() {
+
+      var callFunction = function() {
+        //Call function and store the result
+        storedResult = func.apply(this, arguments);
+        //Activate the window of time
+        activeTimeWindow = true; 
+        //End the window of time after the specified time
+        setTimeout(function() {
+          activeTimeWindow = false;
+          //If the function was called at least once during the window of time, start over again
+          if (called) {
+            called = false;
+            callFunction();
+          }
+        }, wait);
+      }
+
+      //If window of time not active, call the func
+      if (!activeTimeWindow) {
+        callFunction();
+      } else {
+        //If window of time active, show that the function was called at least once during the window
+        called = true;
+      }
+
+      //Always return the last stored result
+      return storedResult;
+    };
   };
 
 }).call(this);
