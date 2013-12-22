@@ -486,24 +486,23 @@ var _ = { };
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
-
-    var listOfNextArrays = Array.prototype.slice.call(arguments, 1);
     var firstArray = arguments[0];
+    var otherArrays = Array.prototype.slice.call(arguments, 1);
     var intersectArray = [];
 
-    //Loop on each element of the first array
-    _.each(firstArray, function(valueFirstArray) {
+    //Loop on the elements of the first array
+    _.each(firstArray, function(valueFirst, indexFirst) {
 
-      var searchArray = [];
-      //Loop on the list of arrays (not including the first array) and search for the value
-      _.each(listOfNextArrays, function(array) {
-        searchArray.push(array.indexOf(valueFirstArray));
-      });
-      //If the value was present in each array, it is part of intersection
-      if (searchArray.indexOf(-1) === -1) {
-        intersectArray.push(valueFirstArray);
+      //For each element of the first array, check that "every" other array "contains" the element
+      //If this the case, put the element in the intersect array
+      if (_.every(otherArrays, function(valueOtherArray, indexOtherArray) {
+        return _.contains(valueOtherArray, valueFirst);
+      })) {
+        intersectArray.push(valueFirst);        
       }
+    
     });
+
     return intersectArray;
   };
 
