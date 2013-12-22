@@ -509,17 +509,22 @@ var _ = { };
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var firstArray = array;
+    var nextArrays = Array.prototype.slice.call(arguments, 1);
+    //default the diffArray to a copy of the first array
+    var diffArray = firstArray.slice(0);
 
-    var diffArray = arguments[0];
-    var listOfNextArrays = Array.prototype.slice.call(arguments, 1);
+    //Loop on the elements of the first array
+    _.each(firstArray, function(valueFirst, indexFirst) {
 
-    _.each(listOfNextArrays, function(array) {
-      _.each(diffArray, function(value, index) {
-        if (array.indexOf(value) != -1) {
-          diffArray.splice(index, 1);
-        }
-      })
-
+      //For each element of the first array, check that "some" (at least one) other array "contains" the element
+      //If this the case, remove the element from the diffArray
+      if (_.some(nextArrays, function(valueNextArray) {
+        return _.contains(valueNextArray, valueFirst);
+      })) {
+        //I use indexOf here because as soon as one elements is removed from diffArray, the indexes are not in sync with firstArray anymore
+        diffArray.splice(diffArray.indexOf(valueFirst), 1);
+      }
     });
     return diffArray;
   };
